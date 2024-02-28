@@ -47,11 +47,31 @@ def seed_foods():
         fats=0
     )
 
+    broccoli = Food(
+        name='Broccoli',
+        serving_size=85,
+        calories=30,
+        carbs=6,
+        proteins=2,
+        fats=0
+    )
+
+    spinach = Food(
+        name='Spinach',
+        serving_size=85,
+        calories=20,
+        carbs=3,
+        proteins=2,
+        fats=0
+    )
+
     db.session.add(chicken_breast)
     db.session.add(egg)
     db.session.add(salmon)
     db.session.add(sweet_potato)
     db.session.add(white_rice)
+    db.session.add(broccoli)
+    db.session.add(spinach)
     db.session.commit()
 
 def undo_foods():
