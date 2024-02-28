@@ -11,8 +11,16 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    first_name = db.Column(db.String(50), nullable=False)
+    last_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    calorie_goal = db.Column(db.Integer, default=0)
+    carb_goal = db.Column(db.Integer, default=0)
+    protein_goal = db.Column(db.Integer, default=0)
+    fat_goal = db.Column(db.Integer, default=0)
+
+    meals = db.relationship('Meal', back_populates='user')
 
     @property
     def password(self):
