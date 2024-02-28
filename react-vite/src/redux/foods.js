@@ -33,6 +33,16 @@ export const thunkGetFoods = () => async (dispatch) => {
     }
 }
 
+export const thunkGetUserFoods = () => async (dispatch) => {
+  const response = await fetch('/api/foods/current')
+
+  if(response.ok) {
+      const foods = await response.json()
+      dispatch(loadFoods(foods))
+      return foods
+  }
+}
+
 export const thunkGetFood = (foodId) => async (dispatch) => {
     const response = await fetch(`/api/foods/${foodId}`)
 
@@ -44,9 +54,9 @@ export const thunkGetFood = (foodId) => async (dispatch) => {
 }
 
 export const thunkCreateFood = (food) => async (dispatch) => {
-    const response = await fetch('/api/foods', {
+    const response = await fetch('/api/foods/new', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(food)
     })
 
@@ -64,9 +74,7 @@ export const thunkCreateFood = (food) => async (dispatch) => {
 export const thunkUpdateFood = (food) => async (dispatch) => {
     const response = await fetch(`/api/foods/${food.id}`, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(food)
     })
 

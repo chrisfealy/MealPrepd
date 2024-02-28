@@ -8,7 +8,8 @@ def seed_foods():
         calories=140,
         carbs=0,
         proteins=25,
-        fats=4
+        fats=4,
+        user_id=1
     )
 
     egg = Food(
@@ -17,7 +18,8 @@ def seed_foods():
         calories=70,
         carbs=0,
         proteins=6,
-        fats=5
+        fats=5,
+        user_id=1
     )
 
     salmon = Food(
@@ -26,7 +28,8 @@ def seed_foods():
         calories=340,
         carbs=0,
         proteins=37,
-        fats=20
+        fats=20,
+        user_id=1
     )
 
     sweet_potato = Food(
@@ -35,7 +38,8 @@ def seed_foods():
         calories=130,
         carbs=33,
         proteins=2,
-        fats=0
+        fats=0,
+        user_id=1
     )
 
     white_rice = Food(
@@ -44,7 +48,8 @@ def seed_foods():
         calories=160,
         carbs=35,
         proteins=3,
-        fats=0
+        fats=0,
+        user_id=1
     )
 
     broccoli = Food(
@@ -53,7 +58,8 @@ def seed_foods():
         calories=30,
         carbs=6,
         proteins=2,
-        fats=0
+        fats=0,
+        user_id=1
     )
 
     spinach = Food(
@@ -62,7 +68,8 @@ def seed_foods():
         calories=20,
         carbs=3,
         proteins=2,
-        fats=0
+        fats=0,
+        user_id=1
     )
 
     db.session.add(chicken_breast)

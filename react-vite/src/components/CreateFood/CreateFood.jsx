@@ -1,8 +1,16 @@
 import FoodForm from '../FoodForm'
 
 function CreateFood() {
+    const food = {
+        name: '',
+        servingSize: '',
+        calories: '',
+        carbs: '',
+        proteins: '',
+        fats: ''
+    }
     return (
-        <FoodForm formType='Create' />
+        <FoodForm food={food} formType='Create' />
     )
 }
 
