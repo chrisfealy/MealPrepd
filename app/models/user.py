@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
     protein_goal = db.Column(db.Integer, default=0)
     fat_goal = db.Column(db.Integer, default=0)
 
+    foods = db.relationship('Food', back_populates='user')
     meals = db.relationship('Meal', back_populates='user')
 
     @property

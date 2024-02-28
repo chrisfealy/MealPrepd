@@ -10,8 +10,7 @@ class Meal(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text)
-    type = db.Column(db.String(50))
-    image_url = db.Column(db.String(255))
+    image_url = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
@@ -26,5 +25,6 @@ class Meal(db.Model):
             'description': self.description,
             'type': self.type,
             'image_url': self.image_url,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'foods': [food.to_dict() for food in self.foods]
         }
