@@ -23,7 +23,6 @@ class Meal(db.Model):
             'id': self.id,
             'name': self.name,
             'description': self.description,
-            'type': self.type,
             'image_url': self.image_url,
             'user_id': self.user_id,
             'foods': [food.to_dict() for food in self.foods]
