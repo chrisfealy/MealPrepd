@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { thunkCreateFood, thunkUpdateFood } from "../../redux/foods"
+import { closeModal } from "../../context/Modal"
 
 function FoodForm({ food, formType }) {
     const dispatch = useDispatch()
@@ -51,9 +52,7 @@ function FoodForm({ food, formType }) {
         }
         else {
             return dispatch(thunkUpdateFood(food))
-                .then(food => {
-                    navigate(`/foods/${food.id}`)
-                })
+                .then(() => closeModal())
         }
     }
 
