@@ -37,7 +37,6 @@ function FoodDetails() {
             <p>Fats (g): {food?.fats}</p>
             {food?.user_id == user.id && (
                 <div>
-                    {/* <Link to={`/foods/${foodId}/edit`}>Update Food</Link> */}
                     <OpenModalButton
                         modalComponent={<UpdateFood food={food} />}
                         buttonText='Update Food'
