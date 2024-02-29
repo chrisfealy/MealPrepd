@@ -2,6 +2,8 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { thunkDeleteFood, thunkGetFood } from "../../redux/foods"
+import UpdateFood from "../UpdateFood"
+import OpenModalButton from "../OpenModalButton"
 
 function FoodDetails() {
     const dispatch = useDispatch()
@@ -35,7 +37,11 @@ function FoodDetails() {
             <p>Fats (g): {food?.fats}</p>
             {food?.user_id == user.id && (
                 <div>
-                    <Link to={`/foods/${foodId}/edit`}>Update Food</Link>
+                    {/* <Link to={`/foods/${foodId}/edit`}>Update Food</Link> */}
+                    <OpenModalButton
+                        modalComponent={<UpdateFood food={food} />}
+                        buttonText='Update Food'
+                    />
                     <button onClick={deleteFood}>Delete Food</button>
                 </div>
             )}
