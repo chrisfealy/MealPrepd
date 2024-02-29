@@ -2,11 +2,12 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { thunkCreateFood, thunkUpdateFood } from "../../redux/foods"
-import { closeModal } from "../../context/Modal"
+import { useModal } from "../../context/Modal"
 
 function FoodForm({ food, formType }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { closeModal } = useModal()
 
     const [name, setName] = useState(food?.name)
     const [servingSize, setServingSize] = useState(food?.serving_size)
@@ -51,7 +52,7 @@ function FoodForm({ food, formType }) {
                 })
         }
         else {
-            return dispatch(thunkUpdateFood(food))
+            dispatch(thunkUpdateFood(food))
                 .then(() => closeModal())
         }
     }

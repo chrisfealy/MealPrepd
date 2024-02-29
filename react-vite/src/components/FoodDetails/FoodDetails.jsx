@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { thunkDeleteFood, thunkGetFood } from "../../redux/foods"
 import UpdateFood from "../UpdateFood"
 import OpenModalButton from "../OpenModalButton"
@@ -23,9 +23,6 @@ function FoodDetails() {
             navigate(`/foods`)
         })
     }
-
-    console.log('CURRENT USER', user)
-    console.log('FOOD', food)
 
     return (
         <div>
