@@ -22,8 +22,10 @@ class Food(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'serving_size': self.serving_size,
             'calories': self.calories,
             'carbs': self.carbs,
             'proteins': self.proteins,
-            'fats': self.fats
+            'fats': self.fats,
+            'user_id': self.user_id
         }

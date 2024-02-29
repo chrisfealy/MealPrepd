@@ -44,6 +44,31 @@ def create_food():
         return food.to_dict()
     return {'Error': 'Bad Request'}, 400
 
+@food_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def update_food(id):
+    food = Food.query.get(id)
+    form = FoodForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if not food:
+        return {'message':"Food couldn't be found"}, 404
+
+    if current_user.id != food.user_id:
+        return {'message':'Forbidden'}, 401
+
+    if form.validate_on_submit():
+        food.name = form.data['name']
+        food.serving_size = form.data['serving_size']
+        food.calories = form.data['calories']
+        food.carbs = form.data['carbs']
+        food.proteins = form.data['proteins']
+        food.fats = form.data['fats']
+        db.session.commit()
+        return food.to_dict()
+    return {'Error': 'Bad Request'}, 400
+
+
 @food_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_food(id):

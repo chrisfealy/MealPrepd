@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { thunkCreateFood } from "../../redux/foods"
+import { thunkCreateFood, thunkUpdateFood } from "../../redux/foods"
 
 function FoodForm({ food, formType }) {
     const dispatch = useDispatch()
@@ -49,6 +49,12 @@ function FoodForm({ food, formType }) {
 
         if (formType === 'Create') { // Create
             return dispatch(thunkCreateFood(food))
+                .then(food => {
+                    navigate(`/foods/${food.id}`)
+                })
+        }
+        else {
+            return dispatch(thunkUpdateFood(food))
                 .then(food => {
                     navigate(`/foods/${food.id}`)
                 })

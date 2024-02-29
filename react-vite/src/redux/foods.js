@@ -72,7 +72,7 @@ export const thunkCreateFood = (food) => async (dispatch) => {
 }
 
 export const thunkUpdateFood = (food) => async (dispatch) => {
-    const response = await fetch(`/api/foods/${food.id}`, {
+    const response = await fetch(`/api/foods/${food.id}/edit`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(food)
@@ -103,7 +103,6 @@ const foodsReducer = (state = {}, action) => {
     switch(action.type) {
         case LOAD_FOODS: {
             const newState = {}
-            // console.log('ACTION', action)
             action.foods.foods.forEach((food) => {
               newState[food.id] = food
             })
