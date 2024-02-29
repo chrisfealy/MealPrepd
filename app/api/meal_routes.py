@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from flask_login import current_user, login_required
 from ..models import db, Meal
 from ..forms import MealForm
+from .aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 meal_routes = Blueprint('meals', __name__)
 
@@ -11,10 +12,12 @@ def get_meals():
     response = [meal.to_dict() for meal in meals]
     return {'meals': response}
 
+
 @meal_routes.route('/<int:id>')
 def get_meal(id):
     meal = Meal.query.get(id)
     return meal.to_dict()
+
 
 @meal_routes.route('/current')
 @login_required
@@ -23,22 +26,32 @@ def get_current_user_meals():
     response = [meal.to_dict() for meal in meals]
     return {'meals': response}
 
+
 @meal_routes.route('/new', methods=['POST'])
 @login_required
 def create_meal():
     form = MealForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+
+        image = form.data['image']
+        if image:
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+
         params = {
             'name': form.data['name'],
             'description': form.data['description'],
-            'image_url': form.data['image_url']
+            'image_url': upload['url'] if image else None
         }
+
         meal = Meal(**params)
         db.session.add(meal)
         db.session.commit()
-        return meal.to_dict()
+        return meal.to_dict(), 201
+
     return {'Error': 'Bad Request'}, 400
+
 
 @meal_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
@@ -56,6 +69,8 @@ def update_food(id):
     if form.validate_on_submit():
         meal.name = form.data['name']
         meal.description = form.data['description']
+
         db.session.commit()
         return meal.to_dict()
+
     return {'Error': 'Bad Request'}, 400
