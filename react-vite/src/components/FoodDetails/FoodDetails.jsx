@@ -28,6 +28,11 @@ function FoodDetails() {
     return (
         <div>
             <h2>{food?.name}</h2>
+            <p>Serving Size (g): {food?.serving_size}</p>
+            <p>Calories: {food?.calories}</p>
+            <p>Carbohydrates (g): {food?.carbs}</p>
+            <p>Proteins (g): {food?.proteins}</p>
+            <p>Fats (g): {food?.fats}</p>
             {food?.user_id == user.id && (
                 <div>
                     <Link to={`/foods/${foodId}/edit`}>Update Food</Link>

@@ -8,7 +8,7 @@ function FoodForm({ food, formType }) {
     const navigate = useNavigate()
 
     const [name, setName] = useState(food?.name)
-    const [servingSize, setServingSize] = useState(food?.servingSize)
+    const [servingSize, setServingSize] = useState(food?.serving_size)
     const [calories, setCalories] = useState(food?.calories)
     const [carbs, setCarbs] = useState(food?.carbs)
     const [proteins, setProteins] = useState(food?.proteins)
@@ -42,10 +42,6 @@ function FoodForm({ food, formType }) {
             proteins,
             fats
         }
-
-        delete food.servingSize
-
-        // console.log('FOOD DATA', food)
 
         if (formType === 'Create') { // Create
             return dispatch(thunkCreateFood(food))
@@ -91,7 +87,7 @@ function FoodForm({ food, formType }) {
                     <div className="food-form-error">
                         {submitted && errors.calories && `${errors.calories}`}
                     </div>
-                    <label>Calories (g)</label>
+                    <label>Calories</label>
                     <input
                         type="text"
                         value={calories}

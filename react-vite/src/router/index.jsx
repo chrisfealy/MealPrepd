@@ -13,7 +13,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <NavLink to='/foods'>Foods</NavLink>,
+        element: <>
+          <NavLink to='/foods'>Foods</NavLink>,
+          <NavLink to='/meals'>Meals</NavLink>
+        </>
       },
       {
         path: 'login',

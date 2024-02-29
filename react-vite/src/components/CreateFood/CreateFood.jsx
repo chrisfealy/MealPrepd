@@ -3,7 +3,7 @@ import FoodForm from '../FoodForm'
 function CreateFood() {
     const food = {
         name: '',
-        servingSize: '',
+        serving_size: '',
         calories: '',
         carbs: '',
         proteins: '',
