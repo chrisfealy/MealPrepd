@@ -55,7 +55,7 @@ def create_meal():
 
 @meal_routes.route('/<int:id>/edit', methods=['PUT'])
 @login_required
-def update_food(id):
+def update_meal(id):
     meal = Meal.query.get(id)
     form = MealForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -70,7 +70,29 @@ def update_food(id):
         meal.name = form.data['name']
         meal.description = form.data['description']
 
+        image = form.data['image']
+        if image:
+            remove_file_from_s3(meal['image_url'])
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            meal.image_url = upload['url']
+
         db.session.commit()
         return meal.to_dict()
 
     return {'Error': 'Bad Request'}, 400
+
+@meal_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_meal(id):
+    meal = Meal.query.get(id)
+
+    if not meal:
+        return {'message':"Meal couldn't be found"}, 404
+
+    if current_user.id != meal.user_id:
+        return {'message':'Forbidden'}, 401
+
+    db.session.delete(meal)
+    db.session.commit()
+    return {'message':'Successfully deleted'}, 200
