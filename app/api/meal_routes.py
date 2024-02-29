@@ -21,3 +21,8 @@ def get_current_user_meals():
     meals = Meal.query.filter(Meal.user_id == current_user.id)
     response = [meal.to_dict() for meal in meals]
     return {'meals': response}
+
+@meal_routes.route('/new', methods=['POST'])
+@login_required
+def create_meal():
+    pass
