@@ -6,6 +6,8 @@ import Foods from '../components/Foods'
 import FoodDetails from '../components/FoodDetails'
 import CreateFood from '../components/CreateFood'
 import Meals from '../components/Meals'
+import MealDetails from '../components/MealDetails'
+import CreateMeal from '../components/CreateMeal'
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +43,14 @@ export const router = createBrowserRouter([
       {
         path: 'meals',
         element: <Meals />
+      },
+      {
+        path: 'meals/new',
+        element: <CreateMeal />
+      },
+      {
+        path: 'meals/:mealId',
+        element: <MealDetails />
       }
     ],
   },
