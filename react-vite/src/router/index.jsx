@@ -5,7 +5,7 @@ import Layout from './Layout'
 import Foods from '../components/Foods'
 import FoodDetails from '../components/FoodDetails'
 import CreateFood from '../components/CreateFood'
-import UpdateFood from '../components/UpdateFood'
+import Meals from '../components/Meals'
 
 export const router = createBrowserRouter([
   {
@@ -39,8 +39,8 @@ export const router = createBrowserRouter([
         element: <CreateFood />
       },
       {
-        path: 'foods/:foodId/edit',
-        element: <UpdateFood />
+        path: 'meals',
+        element: <Meals />
       }
     ],
   },
