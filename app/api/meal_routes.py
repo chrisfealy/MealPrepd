@@ -32,6 +32,7 @@ def get_current_user_meals():
 def create_meal():
     form = MealForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
 
         image = form.data['image']
@@ -42,7 +43,8 @@ def create_meal():
         params = {
             'name': form.data['name'],
             'description': form.data['description'],
-            'image_url': upload['url'] if image else None
+            'image_url': upload['url'] if image else None,
+            'user_id': current_user.id
         }
 
         meal = Meal(**params)
@@ -92,6 +94,9 @@ def delete_meal(id):
 
     if current_user.id != meal.user_id:
         return {'message':'Forbidden'}, 401
+
+    if meal['image_url']:
+        remove_file_from_s3(meal['image_url'])
 
     db.session.delete(meal)
     db.session.commit()

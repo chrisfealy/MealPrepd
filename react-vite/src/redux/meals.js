@@ -56,8 +56,7 @@ export const thunkGetMeal = (mealId) => async (dispatch) => {
 export const thunkCreateMeal = (meal) => async (dispatch) => {
     const response = await fetch('/api/meals/new', {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(meal)
+      body: meal
     })
 
     if(response.ok) {
