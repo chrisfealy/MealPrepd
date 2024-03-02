@@ -1,24 +1,43 @@
-import { useEffect } from "react"
+// import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import OpenModalButton from "../OpenModalButton"
+import { thunkDeleteMeal } from "../../redux/meals"
 
 function MealDetails() {
     const dispatch = useDispatch()
-    const {mealId} = useParams()
-    const meal = useSelector(state => state.meals[mealId])
-    const user = useSelector(state => state.session.user)
+    const navigate = useNavigate()
 
+    const {mealId} = useParams()
+    const user = useSelector(state => state.session.user)
+    const meal = useSelector(state => state.meals[mealId])
+    const mealFoods = meal['foods']
+
+    const calories = mealFoods.reduce((acc, food) => acc + food.calories, 0)
+
+    const deleteMeal = async (e) => {
+        e.preventDefault()
+        dispatch(thunkDeleteMeal(mealId))
+        .then(() => {
+            navigate('/meals')
+        })
+    }
 
     return (
         <div>
             <h2>{meal?.name}</h2>
             <img src={meal?.image_url} alt="" />
+            {mealFoods.map(mealFood => (
+                <div>
+
+                </div>
+            ))}
             {meal.user_id == user.id && (
                 <div>
                     <OpenModalButton
                         buttonText='Edit Meal'
                     />
+                    <button onClick={deleteMeal}>Delete Meal</button>
                 </div>
             )}
         </div>

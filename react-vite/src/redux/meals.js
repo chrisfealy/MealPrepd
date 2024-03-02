@@ -89,7 +89,7 @@ export const thunkUpdateMeal = (meal) => async (dispatch) => {
 }
 
 export const thunkDeleteMeal = (mealId) => async (dispatch) => {
-    const response = await fetch(`/api/foods/${mealId}`, {
+    const response = await fetch(`/api/meals/${mealId}`, {
       method: 'DELETE'
     })
 
