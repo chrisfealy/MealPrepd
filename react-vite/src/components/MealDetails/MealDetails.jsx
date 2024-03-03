@@ -11,9 +11,6 @@ function MealDetails() {
     const {mealId} = useParams()
     const user = useSelector(state => state.session.user)
     const meal = useSelector(state => state.meals[mealId])
-    const mealFoods = meal['foods']
-
-    const calories = mealFoods.reduce((acc, food) => acc + food.calories, 0)
 
     const deleteMeal = async (e) => {
         e.preventDefault()
@@ -27,11 +24,6 @@ function MealDetails() {
         <div>
             <h2>{meal?.name}</h2>
             <img src={meal?.image_url} alt="" />
-            {mealFoods.map(mealFood => (
-                <div>
-
-                </div>
-            ))}
             {meal.user_id == user.id && (
                 <div>
                     <OpenModalButton

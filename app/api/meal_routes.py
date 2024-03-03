@@ -74,7 +74,7 @@ def update_meal(id):
 
         image = form.data['image']
         if image:
-            remove_file_from_s3(meal['image_url'])
+            remove_file_from_s3(meal.image_url)
             image.filename = get_unique_filename(image.filename)
             upload = upload_file_to_s3(image)
             meal.image_url = upload['url']
@@ -95,8 +95,8 @@ def delete_meal(id):
     if current_user.id != meal.user_id:
         return {'message':'Forbidden'}, 401
 
-    if meal['image_url']:
-        remove_file_from_s3(meal['image_url'])
+    if meal.image_url:
+        remove_file_from_s3(meal.image_url)
 
     db.session.delete(meal)
     db.session.commit()

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { thunkCreateMeal } from "../../redux/meals"
 
-function MealForm({meal, formType}) {
+function MealForm({ meal, formType }) {
     const dispatch = useDispatch()
 
     const [name, setName] = useState(meal?.name)
@@ -13,7 +13,7 @@ function MealForm({meal, formType}) {
 
     useEffect(() => {
         const valErrors = {}
-        if(!name) valErrors.name = 'Name is required'
+        if (!name) valErrors.name = 'Name is required'
         setErrors(valErrors)
     }, [name])
 
@@ -21,7 +21,7 @@ function MealForm({meal, formType}) {
         e.preventDefault()
         setSubmitted(true)
 
-        if(Object.keys(errors).length) return
+        if (Object.keys(errors).length) return
 
         const formData = new FormData()
         formData.append('name', name)
@@ -37,6 +37,9 @@ function MealForm({meal, formType}) {
             <h2>{formType == 'Create' ? 'Add Meal to Database' : 'Update Meal'}</h2>
             <form onSubmit={handleSubmit}>
                 <div>
+                    <div className="meal-form-error">
+                        {submitted && errors.name && `${errors.name}`}
+                    </div>
                     <label>Name</label>
                     <input
                         type="text"
