@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import current_user, login_required
-from ..models import db, Meal
+from ..models import db, Meal, Food, meal_foods
 from ..forms import MealForm
 from .aws_helpers import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
@@ -101,3 +101,44 @@ def delete_meal(id):
     db.session.delete(meal)
     db.session.commit()
     return {'message':'Successfully deleted'}, 200
+
+@meal_routes.route('/<int:id>/add/<int:food_id>', methods=['POST'])
+@login_required
+def add_food_to_meal(id, food_id):
+    meal = Meal.query.get(id)
+    food = Food.query.get(food_id)
+
+    if not meal:
+        return {'message':"Meal couldn't be found"}, 404
+
+    if not food:
+        return {'message':"Food couldn't be found"}, 404
+
+    if current_user.id != meal.user_id:
+        return {'message':'Forbidden'}, 401
+
+    data = {'meal_id': id, 'food_id': food_id}
+
+    db.session.execute(meal_foods.insert(), data)
+    db.session.commit()
+
+    return meal.to_dict(), 201
+
+@meal_routes.route('/<int:id>/remove/<int:food_id>', methods=['DELETE'])
+def remove_food_from_meal(id, food_id):
+    meal = Meal.query.get(id)
+    food = Food.query.get(food_id)
+
+    if not meal:
+        return {'message':"Meal couldn't be found"}, 404
+
+    if not food:
+        return {'message':"Food couldn't be found"}, 404
+
+    if current_user.id != meal.user_id:
+        return {'message':'Forbidden'}, 401
+
+    meal.foods.remove(food)
+    db.session.commit()
+
+    return {'message': 'Successfully deleted'}, 200

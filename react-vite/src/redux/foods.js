@@ -1,7 +1,7 @@
-export const LOAD_FOODS = 'spots/LOAD_FOODS'
-export const RECEIVE_FOOD = 'spots/RECEIVE_FOOD'
-export const UPDATE_FOOD = 'spots/UPDATE_FOOD'
-export const REMOVE_FOOD = 'spots/REMOVE_FOOD'
+export const LOAD_FOODS = 'foods/LOAD_FOODS'
+export const RECEIVE_FOOD = 'foods/RECEIVE_FOOD'
+export const UPDATE_FOOD = 'foods/UPDATE_FOOD'
+export const REMOVE_FOOD = 'foods/REMOVE_FOOD'
 
 export const loadFoods = (foods) => ({
   type: LOAD_FOODS,
