@@ -36,33 +36,40 @@ function LoginFormModal() {
   }
 
   return (
-    <>
-      <h1>Log In</h1>
+    <div className="login-container">
+      <h2>Member Login</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
-        <button onClick={demoLogin}>Demo User</button>
+        <div className="login-inputs">
+          <div className="login-input">
+            {/* <label>Email</label> */}
+            <input
+              placeholder="Email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            {errors.email && <p>{errors.email}</p>}
+          </div>
+          <div className="login-input">
+            {/* <label>Password</label> */}
+            <input
+              placeholder="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            {errors.password && <p>{errors.password}</p>}
+          </div>
+        </div>
+        <div className="login-buttons">
+          <button type="submit" className="login-btn">Log In</button>
+          <div>or</div>
+          <button onClick={demoLogin} className="login-btn">Demo User</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 
