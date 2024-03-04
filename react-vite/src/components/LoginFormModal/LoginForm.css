@@ -34,7 +34,6 @@
 
 .login-input input:focus {
     outline: none;
-    border-color: #588b76;
 }
 
 .login-btn {
@@ -49,4 +48,8 @@
 .login-btn:hover {
     cursor: pointer;
     background-color: #18392b;
+}
+
+.login-errors {
+    color: red;
 }

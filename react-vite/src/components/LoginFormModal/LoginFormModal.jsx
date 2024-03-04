@@ -38,10 +38,15 @@ function LoginFormModal() {
   return (
     <div className="login-container">
       <h2>Member Login</h2>
+      <div className="login-errors">
+        {errors.email && <p>{errors.email}</p>}
+      </div>
+      <div className="login-errors">
+        {errors.password && <p>{errors.password}</p>}
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="login-inputs">
           <div className="login-input">
-            {/* <label>Email</label> */}
             <input
               placeholder="Email"
               type="text"
@@ -49,10 +54,8 @@ function LoginFormModal() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            {errors.email && <p>{errors.email}</p>}
           </div>
           <div className="login-input">
-            {/* <label>Password</label> */}
             <input
               placeholder="Password"
               type="password"
@@ -60,7 +63,6 @@ function LoginFormModal() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            {errors.password && <p>{errors.password}</p>}
           </div>
         </div>
         <div className="login-buttons">
