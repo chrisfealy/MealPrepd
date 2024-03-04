@@ -34,9 +34,13 @@ function MealDetails() {
             })
     }
 
+    console.log(meal)
+
     return (
         <div>
             <h2>{meal?.name}</h2>
+            <img src={meal?.image_url} alt={meal?.name} />
+            <p>{meal?.description}</p>
             {meal?.foods.map(food => (
                 <li key={food.id}>
                     <div>{food.name}</div>
