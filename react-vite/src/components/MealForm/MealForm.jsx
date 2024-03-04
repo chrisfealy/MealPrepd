@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { thunkCreateMeal } from "../../redux/meals"
+import { thunkCreateMeal, thunkUpdateMeal } from "../../redux/meals"
+import { useNavigate } from "react-router-dom"
+import { useModal } from "../../context/Modal"
 
 function MealForm({ meal, formType }) {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { closeModal } = useModal()
 
     const [name, setName] = useState(meal?.name)
     const [description, setDescription] = useState(meal?.description)
@@ -28,7 +32,16 @@ function MealForm({ meal, formType }) {
         formData.append('description', description)
         formData.append('image', image)
 
-        dispatch(thunkCreateMeal(formData))
+        if (formType === 'Create') {
+            return dispatch(thunkCreateMeal(formData))
+                .then(meal => {
+                    navigate(`/meals/${meal.id}`)
+                })
+        }
+        else {
+            return dispatch(thunkUpdateMeal(formData, meal.id))
+                .then(() => closeModal())
+        }
 
     }
 

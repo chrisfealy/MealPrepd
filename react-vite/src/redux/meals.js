@@ -70,12 +70,13 @@ export const thunkCreateMeal = (meal) => async (dispatch) => {
   }
 }
 
-export const thunkUpdateMeal = (meal) => async (dispatch) => {
-  const response = await fetch(`/api/meals/${meal.id}/edit`, {
+export const thunkUpdateMeal = (meal, mealId) => async (dispatch) => {
+  const response = await fetch(`/api/meals/${mealId}/edit`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(meal)
+    body: meal
   })
+
+  console.log('RESONSE >>>>', response)
 
   if (response.ok) {
     const meal = await response.json()
