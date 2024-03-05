@@ -1,6 +1,8 @@
 /* TODO: Add sitewide styles */
 * {
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 textarea {
@@ -9,4 +11,12 @@ textarea {
 
 #modal-content {
     border-radius: .5rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
 }
