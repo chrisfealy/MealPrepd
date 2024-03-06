@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { thunkCreateMeal, thunkUpdateMeal } from "../../redux/meals"
 import { useNavigate } from "react-router-dom"
 import { useModal } from "../../context/Modal"
+import './MealForm.css'
 
 function MealForm({ meal, formType }) {
     const dispatch = useDispatch()
@@ -48,10 +49,10 @@ function MealForm({ meal, formType }) {
     }
 
     return (
-        <div>
+        <div className="meal-form-wrapper">
             <h2>{formType == 'Create' ? 'Add Meal to Database' : 'Update Meal'}</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
+            <form onSubmit={handleSubmit} className="meal-form-container">
+                <div className="meal-form-input">
                     <div className="meal-form-error">
                         {submitted && errors.name && `${errors.name}`}
                     </div>
@@ -62,7 +63,7 @@ function MealForm({ meal, formType }) {
                         onChange={e => setName(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="meal-form-input">
                     <label>Description</label>
                     <textarea
                         type="text"
@@ -70,8 +71,8 @@ function MealForm({ meal, formType }) {
                         onChange={e => setDescription(e.target.value)}
                     />
                 </div>
-                <div>
-                <div className="meal-form-error">
+                <div className="meal-form-input meal-img">
+                    <div className="meal-form-error">
                         {submitted && errors.image && `${errors.image}`}
                     </div>
                     <label>Image</label>
@@ -82,7 +83,7 @@ function MealForm({ meal, formType }) {
                         onChange={e => setImage(e.target.files[0])}
                     />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className="meal-form-btn">Submit</button>
             </form>
         </div>
     )

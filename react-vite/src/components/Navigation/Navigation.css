@@ -1,6 +1,6 @@
 .profile-dropdown {
   position: absolute;
-  top: 2.2rem;
+  top: 2.5rem;
   right: 1rem;
   border: 1px solid black;
   display: flex;
@@ -20,7 +20,7 @@
 }
 
 .nav-left {
-  color: white;
+  color: #d0ded8;
   display: flex;
   gap: 0.5rem;
   font-size: 24px;
@@ -29,4 +29,19 @@
 
 .nav-modal-menu-item:hover {
   cursor: pointer;
+}
+
+.profile-btn {
+  font-size: 24px;
+  color: #d0ded8;
+}
+
+.profile-btn:hover {
+  cursor: pointer;
+}
+
+.logout:hover {
+  cursor: pointer;
+  color: #18392b;
+  text-decoration: underline;
 }

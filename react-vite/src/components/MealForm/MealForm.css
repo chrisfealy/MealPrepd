@@ -1,34 +1,41 @@
-.food-form-wrapper {
+.meal-form-wrapper {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
 
-.food-form-wrapper h2 {
+.meal-form-wrapper h2 {
     text-align: center;
 }
 
-.food-form-container {
+.meal-form-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
 }
 
-.food-form-input {
+.meal-form-input {
     display: flex;
     flex-direction: column;
     width: 20%;
 }
 
-.food-form-input input {
+.meal-form-input input {
     height: 1.5rem;
     padding: 0.2rem;
     border-radius: 0.2rem;
     border: 1px solid #588b76;
 }
 
-.food-form-btn {
+.meal-form-input textarea {
+    height: 4rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    border: 1px solid #588b76;
+}
+
+.meal-form-btn {
     color: white;
     background-color: #588b76;
     border-radius: 0.2rem;
@@ -37,12 +44,13 @@
     height: 2rem;
 }
 
-.food-form-btn:hover {
+.meal-form-btn:hover {
     cursor: pointer;
     background-color: #18392b;
 }
 
-.food-form-error {
+
+.meal-form-error {
     margin-top: 0.5rem;
     color: rgb(255, 130, 130);
 }

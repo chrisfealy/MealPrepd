@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { thunkDeleteFood, thunkGetFood } from "../../redux/foods"
 import UpdateFood from "../UpdateFood"
 import OpenModalButton from "../OpenModalButton"
+import DeleteFood from "../DeleteFood"
 
 function FoodDetails() {
     const dispatch = useDispatch()
@@ -38,7 +39,10 @@ function FoodDetails() {
                         modalComponent={<UpdateFood food={food} />}
                         buttonText='Update Food'
                     />
-                    <button onClick={deleteFood}>Delete Food</button>
+                    <OpenModalButton
+                        modalComponent={<DeleteFood foodId={foodId} />}
+                        buttonText='Delete Food'
+                    />
                 </div>
             )}
         </div>
