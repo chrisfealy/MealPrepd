@@ -19,6 +19,7 @@ function MealForm({ meal, formType }) {
         const valErrors = {}
         if (!name.length) valErrors.name = 'Name is required'
         if (name.length > 50) valErrors.name = 'Name must be less than or equal to 50 characters'
+        if (formType === 'Create' && !image) valErrors.image = 'Image is required'
         setErrors(valErrors)
     }, [name])
 
@@ -70,6 +71,9 @@ function MealForm({ meal, formType }) {
                     />
                 </div>
                 <div>
+                <div className="meal-form-error">
+                        {submitted && errors.image && `${errors.image}`}
+                    </div>
                     <label>Image</label>
                     <input
                         type="file"
