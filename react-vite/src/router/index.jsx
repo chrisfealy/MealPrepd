@@ -49,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path: 'meals/:mealId',
         element: <MealDetails />
+      },
+      {
+        path: '*',
+        element: <h2>Page Not Found</h2>
       }
     ],
   },
