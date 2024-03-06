@@ -1,4 +1,5 @@
 import { NavLink, createBrowserRouter } from 'react-router-dom'
+import Home from '../components/Home'
 import LoginFormPage from '../components/LoginFormPage'
 import SignupFormPage from '../components/SignupFormPage'
 import Layout from './Layout'
@@ -15,10 +16,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <>
-          <NavLink to='/foods'>Foods</NavLink>,
-          <NavLink to='/meals'>Meals</NavLink>
-        </>
+        element: <Home />
       },
       {
         path: 'login',

@@ -1,0 +1,16 @@
+.meals-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.meals-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.meal-card-image {
+    width: 15rem;
+    height: 15rem;
+    overflow: hidden;
+}
