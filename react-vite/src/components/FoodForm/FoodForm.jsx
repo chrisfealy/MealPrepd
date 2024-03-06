@@ -21,7 +21,7 @@ function FoodForm({ food, formType }) {
     useEffect(() => {
         const valErrors = {}
         if (!name.length) valErrors.name = 'Name is required'
-        if (name.length > 50) valErrors.name = 'Name must be less than 50 characters'
+        if (name.length > 50) valErrors.name = 'Name must be less than or equal to 50 characters'
         if (!String(servingSize).length) valErrors.servingSize = 'Serving Size is required'
         if (servingSize < 0) valErrors.servingSize = 'Serving Size must be greater than or equal to 0'
         if (!String(calories).length) valErrors.calories = 'Calories are required'
