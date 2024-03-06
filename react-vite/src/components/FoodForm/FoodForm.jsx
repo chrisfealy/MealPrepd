@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { thunkCreateFood, thunkUpdateFood } from "../../redux/foods"
 import { useModal } from "../../context/Modal"
+import './FoodForm.css'
 
 function FoodForm({ food, formType }) {
     const dispatch = useDispatch()
@@ -64,10 +65,10 @@ function FoodForm({ food, formType }) {
     }
 
     return (
-        <div>
+        <div className="food-form-wrapper">
             <h2>{formType == 'Create' ? 'Add Food Item to Database' : 'Update Food Item'}</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
+            <form onSubmit={handleSubmit} className="food-form-container">
+                <div className="food-form-input">
                     <div className="food-form-error">
                         {submitted && errors.name && `${errors.name}`}
                     </div>
@@ -78,7 +79,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setName(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="food-form-input">
                     <div className="food-form-error">
                         {submitted && errors.servingSize && `${errors.servingSize}`}
                     </div>
@@ -89,7 +90,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setServingSize(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="food-form-input">
                     <div className="food-form-error">
                         {submitted && errors.calories && `${errors.calories}`}
                     </div>
@@ -100,7 +101,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setCalories(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="food-form-input">
                     <div className="food-form-error">
                         {submitted && errors.carbs && `${errors.carbs}`}
                     </div>
@@ -111,7 +112,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setCarbs(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="food-form-input">
                     <div className="food-form-error">
                         {submitted && errors.proteins && `${errors.proteins}`}
                     </div>
@@ -122,7 +123,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setProteins(e.target.value)}
                     />
                 </div>
-                <div>
+                <div className="food-form-input">
                     <div className="food-form-error">
                         {submitted && errors.fats && `${errors.fats}`}
                     </div>
@@ -133,7 +134,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setFats(e.target.value)}
                     />
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className="food-form-btn">Submit</button>
             </form>
         </div>
     )

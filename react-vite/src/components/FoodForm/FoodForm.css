@@ -1,0 +1,48 @@
+.food-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.food-form-wrapper h2 {
+    text-align: center;
+}
+
+.food-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.food-form-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.food-form-input input {
+    height: 1.5rem;
+    padding: 0.2rem;
+    /* width: 90%; */
+    border-radius: 0.2rem;
+    border: 1px solid #588b76;
+}
+
+.food-form-btn {
+    color: white;
+    background-color: #588b76;
+    border-radius: 0.2rem;
+    width: 5rem;
+    border: none;
+    height: 2rem;
+}
+
+.food-form-btn:hover {
+    cursor: pointer;
+    background-color: #18392b;
+}
+
+.food-form-error {
+    margin-top: 0.5rem;
+    color: rgb(255, 130, 130);
+}
