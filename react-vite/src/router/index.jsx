@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
         element: <CreateFood />
       },
       {
-        path: 'meals',
+        path: 'meals/current',
         element: <Meals />
       },
       {

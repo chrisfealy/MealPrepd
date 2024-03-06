@@ -15,15 +15,16 @@ function Home() {
 
     return (
         <div>
-            <h2>Home</h2>
             <div className="meals-container">
-                <h3>Discover meals</h3>
+                <h2>Discover meals</h2>
                 <div className="meals-grid">
                     {meals.map(meal => (
-                        <Link to={`/meals/${meal.id}`} className="meal-card">
-                            <img src={meal?.image_url} alt={meal?.name} className="meal-card-image" />
-                            <div>{meal?.name}</div>
-                        </Link>
+                        <div className="meal-card">
+                            <Link to={`/meals/${meal.id}`}>
+                                <img src={meal?.image_url} alt={meal?.name} className="meal-card-image" />
+                            </Link>
+                            <h4>{meal?.name}</h4>
+                        </div>
                     ))}
                 </div>
             </div>

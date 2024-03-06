@@ -1,0 +1,12 @@
+.lower-nav-container {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    font-weight: bold;
+    flex-direction: row-reverse;
+}
+
+.lower-nav-container a:hover {
+    color: #18392b;
+    text-decoration: underline;
+}

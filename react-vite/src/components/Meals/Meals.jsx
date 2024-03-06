@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { thunkGetMeals } from "../../redux/meals"
+import { thunkGetUserMeals } from "../../redux/meals"
 
 function Meals() {
     const dispatch = useDispatch()
@@ -9,7 +9,7 @@ function Meals() {
 
 
     useEffect(() => {
-        dispatch(thunkGetMeals())
+        dispatch(thunkGetUserMeals())
     }, [dispatch])
 
     return (
