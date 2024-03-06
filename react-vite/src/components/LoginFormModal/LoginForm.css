@@ -51,5 +51,6 @@
 }
 
 .login-errors {
-    color: red;
+    margin-top: 0.5rem;
+    color: rgb(255, 130, 130);
 }

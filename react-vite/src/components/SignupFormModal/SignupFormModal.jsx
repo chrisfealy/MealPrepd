@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
@@ -6,6 +6,8 @@ import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
+
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('');
@@ -13,10 +15,30 @@ function SignupFormModal() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const { closeModal } = useModal();
+  const [submitted, setSubmitted] = useState(false)
+
+  useEffect(() => {
+    const valErrors = {}
+    if (!firstName.length) valErrors.firstName = 'First Name is required'
+    if (!lastName.length) valErrors.lastName = 'Last Name is required'
+    if (!username.length) valErrors.username = 'Username is required'
+    if (!validateEmail(email)) valErrors.email = 'Email is invalid'
+    if (password.length < 8) valErrors.password = 'Password must be at least 8 characters'
+    if (confirmPassword.length < 8) valErrors.confirmPassword = 'Confirm Password must be at least 8 characters'
+    setErrors(valErrors)
+  }, [firstName, lastName, email, username, password, confirmPassword])
+
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    setSubmitted(true)
 
     if (password !== confirmPassword) {
       return setErrors({
@@ -24,6 +46,8 @@ function SignupFormModal() {
           "Confirm Password field must be the same as the Password field",
       });
     }
+
+    if(Object.keys(errors).length) return
 
     const serverResponse = await dispatch(
       thunkSignup({
@@ -45,7 +69,7 @@ function SignupFormModal() {
   return (
     <div className="signup-container">
       <h2>Sign Up</h2>
-      {errors.server && <p>{errors.server}</p>}
+      {submitted && errors.server && <div className="signup-form-errors">{errors.server}</div>}
       <form onSubmit={handleSubmit}>
         <div className="signup-inputs">
           <div className="signup-input">
@@ -56,7 +80,7 @@ function SignupFormModal() {
               onChange={(e) => setFirstName(e.target.value)}
               required
             />
-            {errors.firstName && <p>{errors.firstName}</p>}
+            {submitted && errors.firstName && <div className="signup-form-errors">{errors.firstName}</div>}
           </div>
           <div className="signup-input">
             <input
@@ -66,7 +90,7 @@ function SignupFormModal() {
               onChange={(e) => setLastName(e.target.value)}
               required
             />
-            {errors.lastName && <p>{errors.lastName}</p>}
+            {submitted && errors.lastName && <div className="signup-form-errors">{errors.lastName}</div>}
           </div>
           <div className="signup-input">
             <input
@@ -76,7 +100,7 @@ function SignupFormModal() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            {errors.email && <p>{errors.email}</p>}
+            {submitted && errors.email && <div className="signup-form-errors">{errors.email}</div>}
           </div>
           <div className="signup-input">
             <input
@@ -86,7 +110,7 @@ function SignupFormModal() {
               onChange={(e) => setUsername(e.target.value)}
               required
             />
-            {errors.username && <p>{errors.username}</p>}
+            {submitted && errors.username && <div className="signup-form-errors">{errors.username}</div>}
           </div>
           <div className="signup-input">
             <input
@@ -96,7 +120,7 @@ function SignupFormModal() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            {errors.password && <p>{errors.password}</p>}
+            {submitted && errors.password && <div className="signup-form-errors">{errors.password}</div>}
           </div>
           <div className="signup-input">
             <input
@@ -106,7 +130,7 @@ function SignupFormModal() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+            {submitted && errors.confirmPassword && <div className="signup-form-errors">{errors.confirmPassword}</div>}
           </div>
         <button type="submit" className="signup-btn">Sign Up</button>
         </div>
