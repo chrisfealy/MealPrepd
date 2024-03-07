@@ -13,8 +13,6 @@ function Home() {
         dispatch(thunkGetMeals())
     }, [dispatch])
 
-    console.log('MEALS', meals)
-
     return (
         <div>
             <div className="meals-container">

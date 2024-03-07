@@ -20,6 +20,7 @@
 
 .meal-card:hover {
     transform: translateY(-5px);
+    color: #588b76;
 }
 
 .meal-card-image {
