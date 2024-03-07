@@ -1,14 +1,13 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
-import { thunkDeleteFood, thunkGetFood } from "../../redux/foods"
+import { useParams } from "react-router-dom"
+import { thunkGetFood } from "../../redux/foods"
 import UpdateFood from "../UpdateFood"
 import OpenModalButton from "../OpenModalButton"
 import DeleteFood from "../DeleteFood"
 
 function FoodDetails() {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const {foodId} = useParams()
     const user = useSelector(state => state.session.user)
     const food = useSelector(state => state.foods[foodId])
@@ -16,14 +15,6 @@ function FoodDetails() {
     useEffect(() => {
         dispatch(thunkGetFood(foodId))
     }, [dispatch, foodId])
-
-    const deleteFood = async (e) => {
-        e.preventDefault()
-        dispatch(thunkDeleteFood(foodId))
-        .then(() => {
-            navigate(`/foods`)
-        })
-    }
 
     return (
         <div>

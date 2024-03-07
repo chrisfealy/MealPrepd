@@ -22,7 +22,7 @@ function MealForm({ meal, formType }) {
         if (name.length > 50) valErrors.name = 'Name must be less than or equal to 50 characters'
         if (formType === 'Create' && !image) valErrors.image = 'Image is required'
         setErrors(valErrors)
-    }, [name])
+    }, [name, image, formType])
 
     const handleSubmit = async (e) => {
         e.preventDefault()

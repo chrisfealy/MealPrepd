@@ -19,7 +19,7 @@ function Home() {
                 <h2>Discover meals</h2>
                 <div className="meals-grid">
                     {meals.map(meal => (
-                        <div className="meal-card">
+                        <div className="meal-card" key={meal.id}>
                             <Link to={`/meals/${meal.id}`}>
                                 <img src={meal?.image_url} alt={meal?.name} className="meal-card-image" />
                             </Link>
