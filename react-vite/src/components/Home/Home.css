@@ -3,14 +3,31 @@
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
+    margin: 5rem 3rem;
 }
 
 .meals-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.meal-card {
+    border-radius: 0.5rem;
+    box-shadow: .05rem 0.1rem 0.3rem -0.03rem rgba(0, 0, 0, 0.45);
+    transition: transform 0.3s ease;
+}
+
+.meal-card:hover {
+    transform: translateY(-5px);
 }
 
 .meal-card-image {
-    width: 15rem;
-    overflow: hidden;
+    border-radius: 0.5rem 0.5rem 0 0;
+    width: 100%;
+    aspect-ratio: 4/3;
+}
+
+.meal-card-info {
+    padding: 1rem 0.5rem;
 }

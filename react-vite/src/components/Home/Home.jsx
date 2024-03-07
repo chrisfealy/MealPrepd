@@ -13,18 +13,22 @@ function Home() {
         dispatch(thunkGetMeals())
     }, [dispatch])
 
+    console.log('MEALS', meals)
+
     return (
         <div>
             <div className="meals-container">
                 <h2>Discover meals</h2>
                 <div className="meals-grid">
                     {meals.map(meal => (
-                        <div className="meal-card" key={meal.id}>
-                            <Link to={`/meals/${meal.id}`}>
+                        <Link to={`/meals/${meal.id}`}>
+                            <div className="meal-card" key={meal.id}>
                                 <img src={meal?.image_url} alt={meal?.name} className="meal-card-image" />
-                            </Link>
-                            <h4>{meal?.name}</h4>
-                        </div>
+                                <div className="meal-card-info">
+                                    {meal?.name}
+                                </div>
+                            </div>
+                        </Link>
                     ))}
                 </div>
             </div>
