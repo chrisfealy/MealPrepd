@@ -6,6 +6,7 @@ import './Foods.css'
 
 function Foods() {
     const dispatch = useDispatch()
+    const user = useSelector(state => state.session.user)
     const foods = useSelector(state => Object.values(state.foods))
 
     useEffect(() => {
@@ -17,9 +18,11 @@ function Foods() {
     return (
         <div className="foods-container">
             <h2>Foods Database</h2>
-            <div className="food-create">
-                <Link to={`/foods/new`}>Add Food</Link>
-            </div>
+            {user && (
+                <div className="food-create">
+                    <Link to={`/foods/new`}>Add Food</Link>
+                </div>
+            )}
             {foods.map(food => (
                 <div key={food.id}>
                     <Link to={`/foods/${food.id}`}>
