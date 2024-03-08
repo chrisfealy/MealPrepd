@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import { removeFoodFromMeal, thunkDeleteMeal, thunkGetMeal } from "../../redux/meals"
+import { Link, useParams } from "react-router-dom"
+import { removeFoodFromMeal, thunkGetMeal } from "../../redux/meals"
 import OpenModalButton from "../OpenModalButton"
 import UpdateMeal from "../UpdateMeal"
 import AddToMeal from "./AddToMeal"
@@ -10,7 +10,6 @@ import DeleteModal from "../DeleteModal"
 
 function MealDetails() {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const { mealId } = useParams()
     const user = useSelector(state => state.session.user)
