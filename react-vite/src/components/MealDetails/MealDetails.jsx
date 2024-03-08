@@ -1,10 +1,11 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { removeFoodFromMeal, thunkDeleteMeal, thunkGetMeal } from "../../redux/meals"
 import OpenModalButton from "../OpenModalButton"
 import UpdateMeal from "../UpdateMeal"
 import AddToMeal from "./AddToMeal"
+import './MealDetails.css'
 
 function MealDetails() {
     const dispatch = useDispatch()
@@ -37,20 +38,10 @@ function MealDetails() {
     console.log(meal)
 
     return (
-        <div>
+        <div className="meal-details-container">
             <h2>{meal?.name}</h2>
-            <img src={meal?.image_url} alt={meal?.name} />
-            <p>{meal?.description}</p>
-            {meal?.foods.map(food => (
-                <li key={food.id}>
-                    <div>{food.name}</div>
-                    {meal?.user_id == user?.id && (
-                        <button onClick={(e) => removeFood(e, food)}>Remove</button>
-                    )}
-                </li>
-            ))}
             {meal?.user_id == user?.id && (
-                <div>
+                <div className="meal-details-btns">
                     <OpenModalButton
                         modalComponent={<AddToMeal mealId={mealId} />}
                         buttonText='Add Foods to Meal'
@@ -62,6 +53,21 @@ function MealDetails() {
                     <button onClick={deleteMeal}>Delete Meal</button>
                 </div>
             )}
+            <div className="meal-details-info">
+                <img src={meal?.image_url} alt={meal?.name} className="meal-details-image" />
+                <p>{meal?.description}</p>
+                <h4>Ingredients:</h4>
+                <div className="meal-foods">
+                    {meal?.foods.map(food => (
+                        <div className="meal-food" key={food.id}>
+                            <Link to={`/foods/${food.id}`}>{food.name}</Link>
+                            {meal?.user_id == user?.id && (
+                                <button onClick={(e) => removeFood(e, food)} className="meal-food-btn">Remove</button>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     )
 }

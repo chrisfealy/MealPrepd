@@ -13,6 +13,15 @@
 }
 
 .delete-food-btn {
+    border: 1px solid #588b76;
+    background-color: white;
+    color: #588b76;
+    border-radius: 0.2rem;
+    width: 5rem;
+    height: 2rem;
+}
+
+.delete-food-btn-del {
     color: white;
     background-color: #588b76;
     border-radius: 0.2rem;
@@ -21,25 +30,14 @@
     height: 2rem;
 }
 
-.delete-food-btn-del {
-    color: white;
-    background-color: rgb(255, 130, 130);
-    border-radius: 0.2rem;
-    width: 5rem;
-    border: none;
-    height: 2rem;
-}
-
 .delete-food-btn:hover {
     cursor: pointer;
-    border: 1px solid #588b76;
-    background-color: white;
-    color: #588b76;
+    border: 1px solid #18392b;
+    color: #18392b;
 }
 
 .delete-food-btn-del:hover {
     cursor: pointer;
-    border: 1px solid rgb(255, 130, 130);
-    background-color: white;
-    color: rgb(255, 130, 130);
+    background-color: #18392b;
+    color: white;
 }

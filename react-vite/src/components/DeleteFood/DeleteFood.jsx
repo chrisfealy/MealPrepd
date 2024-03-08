@@ -20,7 +20,7 @@ function DeleteFood({ foodId }) {
 
     return (
         <div className="delete-food-container">
-            <h2>Are you sure you want to delete</h2>
+            <h2>Are you sure you want to delete?</h2>
             <div className="delete-food-btns">
                 <button onClick={deleteFood} className="delete-food-btn-del">Yes (Delete)</button>
                 <button onClick={() => closeModal()} className="delete-food-btn">No (Keep)</button>

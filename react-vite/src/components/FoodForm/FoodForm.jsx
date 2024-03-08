@@ -65,10 +65,10 @@ function FoodForm({ food, formType }) {
     }
 
     return (
-        <div className="food-form-wrapper">
+        <div className={formType == 'Create' ? "food-form-wrapper" : "food-form-wrapper-modal"}>
             <h2>{formType == 'Create' ? 'Add Food Item to Database' : 'Update Food Item'}</h2>
-            <form onSubmit={handleSubmit} className="food-form-container">
-                <div className="food-form-input">
+            <form onSubmit={handleSubmit} className={formType == 'Create' ? "food-form-container" : 'form-form-container-modal'}>
+                <div className={formType == 'Create' ? "food-form-input" : "food-form-input-modal"}>
                     <div className="food-form-error">
                         {submitted && errors.name && `${errors.name}`}
                     </div>
@@ -79,7 +79,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setName(e.target.value)}
                     />
                 </div>
-                <div className="food-form-input">
+                <div className={formType == 'Create' ? "food-form-input" : "food-form-input-modal"}>
                     <div className="food-form-error">
                         {submitted && errors.servingSize && `${errors.servingSize}`}
                     </div>
@@ -90,7 +90,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setServingSize(e.target.value)}
                     />
                 </div>
-                <div className="food-form-input">
+                <div className={formType == 'Create' ? "food-form-input" : "food-form-input-modal"}>
                     <div className="food-form-error">
                         {submitted && errors.calories && `${errors.calories}`}
                     </div>
@@ -101,7 +101,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setCalories(e.target.value)}
                     />
                 </div>
-                <div className="food-form-input">
+                <div className={formType == 'Create' ? "food-form-input" : "food-form-input-modal"}>
                     <div className="food-form-error">
                         {submitted && errors.carbs && `${errors.carbs}`}
                     </div>
@@ -112,7 +112,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setCarbs(e.target.value)}
                     />
                 </div>
-                <div className="food-form-input">
+                <div className={formType == 'Create' ? "food-form-input" : "food-form-input-modal"}>
                     <div className="food-form-error">
                         {submitted && errors.proteins && `${errors.proteins}`}
                     </div>
@@ -123,7 +123,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setProteins(e.target.value)}
                     />
                 </div>
-                <div className="food-form-input">
+                <div className={formType == 'Create' ? "food-form-input" : "food-form-input-modal"}>
                     <div className="food-form-error">
                         {submitted && errors.fats && `${errors.fats}`}
                     </div>
@@ -134,7 +134,7 @@ function FoodForm({ food, formType }) {
                         onChange={e => setFats(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="food-form-btn">Submit</button>
+                <button type="submit" className={formType == 'Create' ? "food-form-btn" : "food-form-btn-modal"}>Submit</button>
             </form>
         </div>
     )

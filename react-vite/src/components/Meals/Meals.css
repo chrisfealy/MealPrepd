@@ -1,4 +1,4 @@
-.meals-container {
+.user-meals-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,35 +6,51 @@
     margin: 5rem 3rem;
 }
 
-.meals-grid {
+.user-meals-create {
+    color: white;
+    background-color: #588b76;
+    border-radius: 0.5rem;
+    width: 7rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-meals-create:hover {
+    cursor: pointer;
+    background-color: #18392b;
+}
+
+.user-meals-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
 }
 
-.meal-card {
+.user-meal-card {
     border-radius: 0.5rem;
     box-shadow: .05rem 0.1rem 0.3rem -0.03rem rgba(0, 0, 0, 0.45);
     transition: transform 0.3s ease;
 }
 
-.meal-card:hover {
+.user-meal-card:hover {
     transform: translateY(-5px);
     color: #588b76;
 }
 
-.meal-card-image {
+.user-meal-card-image {
     border-radius: 0.5rem 0.5rem 0 0;
     width: 100%;
     aspect-ratio: 4/3;
 }
 
-.meal-card-info {
+.user-meal-card-info {
     padding: 1rem 0.5rem;
 }
 
 @media screen and (max-width: 800px) {
-    .meals-grid {
+    .user-meals-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
@@ -42,7 +58,7 @@
 }
 
 @media screen and (max-width: 400px) {
-    .meals-grid {
+    .user-meals-grid {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         gap: 2rem;

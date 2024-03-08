@@ -4,6 +4,19 @@
     gap: 2rem;
 }
 
+form.form-form-container-modal {
+    display: flex;
+    flex-direction: column;
+}
+
+.food-form-wrapper-modal {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 5rem;
+    justify-content: center;
+}
+
 .food-form-wrapper h2 {
     text-align: center;
 }
@@ -15,6 +28,14 @@
     gap: 1.5rem;
 }
 
+.food-form.container-modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 10rem;
+}
+
 .food-form-input {
     display: flex;
     flex-direction: column;
@@ -22,6 +43,19 @@
 }
 
 .food-form-input input {
+    height: 1.5rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    border: 1px solid #588b76;
+}
+
+.food-form-input-modal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.food-form-input-modal input {
     height: 1.5rem;
     padding: 0.2rem;
     border-radius: 0.2rem;
@@ -38,6 +72,22 @@
 }
 
 .food-form-btn:hover {
+    cursor: pointer;
+    background-color: #18392b;
+}
+
+.food-form-btn-modal {
+    color: white;
+    background-color: #588b76;
+    border-radius: 0.2rem;
+    width: 5rem;
+    border: none;
+    height: 2rem;
+    margin-top: 1rem;
+    align-self: center;
+}
+
+.food-form-btn-modal:hover {
     cursor: pointer;
     background-color: #18392b;
 }
