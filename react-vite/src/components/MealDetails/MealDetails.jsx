@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton"
 import UpdateMeal from "../UpdateMeal"
 import AddToMeal from "./AddToMeal"
 import './MealDetails.css'
+import DeleteModal from "../DeleteModal"
 
 function MealDetails() {
     const dispatch = useDispatch()
@@ -19,14 +20,6 @@ function MealDetails() {
         dispatch(thunkGetMeal(mealId))
     }, [dispatch, mealId])
 
-    const deleteMeal = async (e) => {
-        e.preventDefault()
-        dispatch(thunkDeleteMeal(mealId))
-            .then(() => {
-                navigate('/meals')
-            })
-    }
-
     const removeFood = async (e, food) => {
         e.preventDefault()
         dispatch(removeFoodFromMeal(food.id, mealId))
@@ -34,8 +27,6 @@ function MealDetails() {
                 dispatch(thunkGetMeal(mealId))
             })
     }
-
-    console.log(meal)
 
     return (
         <div className="meal-details-container">
@@ -50,7 +41,10 @@ function MealDetails() {
                         modalComponent={<UpdateMeal meal={meal} />}
                         buttonText='Edit Meal'
                     />
-                    <button onClick={deleteMeal}>Delete Meal</button>
+                    <OpenModalButton
+                        modalComponent={<DeleteModal mealId={mealId} />}
+                        buttonText='Delete Meal'
+                    />
                 </div>
             )}
             <div className="meal-details-info">
