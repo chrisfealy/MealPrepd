@@ -52,7 +52,7 @@ function MealForm({ meal, formType }) {
         <div className="meal-form-wrapper">
             <h2>{formType == 'Create' ? 'Add Meal to Database' : 'Update Meal'}</h2>
             <form onSubmit={handleSubmit} className="meal-form-container">
-                <div className="meal-form-input">
+                <div className={formType == 'Create' ? "meal-form-input" : 'meal-form-input-modal'}>
                     <div className="meal-form-error">
                         {submitted && errors.name && `${errors.name}`}
                     </div>
@@ -63,7 +63,7 @@ function MealForm({ meal, formType }) {
                         onChange={e => setName(e.target.value)}
                     />
                 </div>
-                <div className="meal-form-input">
+                <div className={formType == 'Create' ? "meal-form-input" : 'meal-form-input-modal'}>
                     <label>Description</label>
                     <textarea
                         type="text"
@@ -71,7 +71,7 @@ function MealForm({ meal, formType }) {
                         onChange={e => setDescription(e.target.value)}
                     />
                 </div>
-                <div className="meal-form-input meal-img">
+                <div className={formType == 'Create' ? "meal-form-input" : 'meal-form-input-modal'}>
                     <div className="meal-form-error">
                         {submitted && errors.image && `${errors.image}`}
                     </div>

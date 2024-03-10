@@ -25,14 +25,19 @@ function FoodForm({ food, formType }) {
         if (name.length > 50) valErrors.name = 'Name must be less than or equal to 50 characters'
         if (!String(servingSize).length) valErrors.servingSize = 'Serving Size is required'
         if (servingSize < 0) valErrors.servingSize = 'Serving Size must be greater than or equal to 0'
+        if (servingSize  > 10000) valErrors.servingSize = 'Serving Size must be less than or equal to 10,000'
         if (!String(calories).length) valErrors.calories = 'Calories are required'
         if (calories < 0) valErrors.calories = 'Calories must be greater than or equal to 0'
+        if (calories > 10000) valErrors.calories = 'Calories must be less than or equal to 10,000'
         if (!String(carbs).length) valErrors.carbs = 'Carbs are required'
         if (carbs < 0) valErrors.carbs = 'Carbs must be greater than or equal to 0'
+        if (carbs > 10000) valErrors.carbs = 'Carbs must be less than or equal to 10,000'
         if (!String(proteins).length) valErrors.proteins = 'Proteins are required'
         if (proteins < 0) valErrors.proteins = 'Proteins must be greater than or equal to 0'
+        if (proteins > 10000) valErrors.proteins = 'Proteins must be less than or equal to 10,000'
         if (!String(fats).length) valErrors.fats = 'Fats are required'
         if (fats < 0) valErrors.fats = 'Fats must be greater than or equal to 0'
+        if (fats > 10000) valErrors.fats = 'Fats must be greater than or equal to 10,000'
         setErrors(valErrors)
     }, [name, servingSize, calories, carbs, proteins, fats])
 

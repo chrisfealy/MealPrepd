@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    padding: 2rem;
 }
 
 .meal-form-wrapper h2 {
@@ -21,6 +22,12 @@
     width: 20%;
 }
 
+.meal-form-input-modal {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
 .meal-form-input input {
     height: 1.5rem;
     padding: 0.2rem;
@@ -28,7 +35,21 @@
     border: 1px solid #588b76;
 }
 
+.meal-form-input-modal input {
+    height: 1.5rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    border: 1px solid #588b76;
+}
+
 .meal-form-input textarea {
+    height: 4rem;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    border: 1px solid #588b76;
+}
+
+.meal-form-input-modal textarea {
     height: 4rem;
     padding: 0.2rem;
     border-radius: 0.2rem;
