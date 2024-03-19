@@ -290,17 +290,613 @@ Returns all foods.
 
     ```json
     {
-        "foods": [
+      "foods": [
+        {
+          "id": 1,
+          "name": "Chicken Breast",
+          "user_id": 2,
+          "serving_size": 112,
+          "calories": 140,
+          "carbs": 0,
+          "proteins": 25,
+          "fats": 4
+        }
+      ]
+    }
+    ```
+
+### Get all Foods owned by the Current User
+
+Returns all the foods owned (created) by the current user.
+
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/foods/current
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "foods": [
+        {
+          "id": 1,
+          "name": "Chicken Breast",
+          "user_id": 2,
+          "serving_size": 112,
+          "calories": 140,
+          "carbs": 0,
+          "proteins": 25,
+          "fats": 4
+        }
+      ]
+    }
+    ```
+
+### Get details of a Food from an id
+
+Returns the details of a food specified by its id.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/foods/:foodId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "Chicken Breast",
+      "user_id": 2,
+      "serving_size": 112,
+      "calories": 140,
+      "carbs": 0,
+      "proteins": 25,
+      "fats": 4
+    }
+    ```
+
+* Error response: Couldn't find a Food with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Food couldn't be found"
+    }
+    ```
+
+### Create a Food
+
+Creates and returns a new food.
+
+* Require Authentication: true
+* Request
+  * Method: POST
+  * URL: /api/foods
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "name": "Chicken Breast",
+      "serving_size": 112,
+      "calories": 140,
+      "carbs": 0,
+      "proteins": 25,
+      "fats": 4
+    }
+    ```
+
+* Successful Response
+  * Status Code: 201
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "Chicken Breast",
+      "user_id": 1,
+      "serving_size": 112,
+      "calories": 140,
+      "carbs": 0,
+      "proteins": 25,
+      "fats": 4
+    }
+    ```
+
+* Error Response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Bad Request",
+      "errors": {
+        "name": "Name is required",
+        "serving_size": "Serving Size must be a positive number",
+        "calories": "Calories must be a positive number",
+        "carbs": "Carbohydrates must be a positive number",
+        "proteins": "Proteins must be a positive number",
+        "fats": "Fats must be a positive number"
+      }
+    }
+    ```
+
+### Edit a Food
+
+Updates and returns an existing food.
+
+* Require Authentication: true
+* Require proper authorization: Food must belong to the current user
+* Request
+  * Method: PUT
+  * URL: /api/foods/:foodId
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "name": "Chicken Breast",
+      "serving_size": 112,
+      "calories": 140,
+      "carbs": 0,
+      "proteins": 25,
+      "fats": 4
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "name": "Chicken Breast",
+      "user_id": 1,
+      "serving_size": 112,
+      "calories": 140,
+      "carbs": 0,
+      "proteins": 25,
+      "fats": 4
+    }
+    ```
+
+* Error Response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Bad Request",
+      "errors": {
+        "name": "Name is required",
+        "serving_size": "Serving Size must be a positive number",
+        "calories": "Calories must be a positive number",
+        "carbs": "Carbohydrates must be a positive number",
+        "proteins": "Proteins must be a positive number",
+        "fats": "Fats must be a positive number"
+      }
+    }
+    ```
+
+* Error response: Couldn't find a Food with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Food couldn't be found"
+    }
+    ```
+
+### Delete a Food
+
+Deletes an existing food.
+
+* Require Authentication: true
+* Require proper authorization: Food must belong to the current user
+* Request
+  * Method: DELETE
+  * URL: /api/foods/:foodId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted"
+    }
+    ```
+
+* Error response: Couldn't find a Food with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Food couldn't be found"
+    }
+    ```
+
+## MEALS
+
+### Get Meals
+
+Returns all foods.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/meals
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "meals": [
+        {
+          "id": 1,
+          "user_id": 1,
+          "name": "Chicken and Rice",
+          "description": "Chicken, broccoli, and rice.",
+          "image_url": "image url",
+          "foods": [
             {
-                "id": 1,
-                "name": "Chicken Breast",
-                "user_id": 2,
-                "serving_size": 112,
-                "calories": 140,
-                "carbs": 0,
-                "proteins": 25,
-                "fats": 4
+              "id": 1,
+              "name": "Chicken Breast",
+              "user_id": 1,
+              "serving_size": 112,
+              "calories": 140,
+              "carbs": 0,
+              "proteins": 25,
+              "fats": 4
+            },
+            {
+              "id": 1,
+              "name": "White Rice",
+              "user_id": 1,
+              "serving_size": 45,
+              "calories": 160,
+              "carbs": 35,
+              "proteins": 3,
+              "fats": 0
+            },
+            {
+              "id": 1,
+              "name": "Broccoli",
+              "user_id": 1,
+              "serving_size": 85,
+              "calories": 30,
+              "carbs": 6,
+              "proteins": 2,
+              "fats": 0
             }
-        ]
+          ]
+        }
+      ]
+    }
+    ```
+
+### Get all Meals owned by the Current User
+
+Returns all the meals owned (created) by the current user.
+
+* Require Authentication: true
+* Request
+  * Method: GET
+  * URL: /api/foods/current
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "meals": [
+        {
+          "id": 1,
+          "user_id": 1,
+          "name": "Chicken and Rice",
+          "description": "Chicken, broccoli, and rice.",
+          "image_url": "image url",
+          "foods": [
+            {
+              "id": 1,
+              "name": "Chicken Breast",
+              "user_id": 1,
+              "serving_size": 112,
+              "calories": 140,
+              "carbs": 0,
+              "proteins": 25,
+              "fats": 4
+            },
+            {
+              "id": 1,
+              "name": "White Rice",
+              "user_id": 1,
+              "serving_size": 45,
+              "calories": 160,
+              "carbs": 35,
+              "proteins": 3,
+              "fats": 0
+            },
+            {
+              "id": 1,
+              "name": "Broccoli",
+              "user_id": 1,
+              "serving_size": 85,
+              "calories": 30,
+              "carbs": 6,
+              "proteins": 2,
+              "fats": 0
+            }
+          ]
+        }
+      ]
+    }
+    ```
+
+### Get details of a Meal from an id
+
+Returns the details of a meal specified by its id.
+
+* Require Authentication: false
+* Request
+  * Method: GET
+  * URL: /api/meals/:mealId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "user_id": 1,
+      "name": "Chicken and Rice",
+      "description": "Chicken, broccoli, and rice.",
+      "image_url": "image url",
+      "foods": [
+        {
+          "id": 1,
+          "name": "Chicken Breast",
+          "user_id": 1,
+          "serving_size": 112,
+          "calories": 140,
+          "carbs": 0,
+          "proteins": 25,
+          "fats": 4
+        },
+        {
+          "id": 1,
+          "name": "White Rice",
+          "user_id": 1,
+          "serving_size": 45,
+          "calories": 160,
+          "carbs": 35,
+          "proteins": 3,
+          "fats": 0
+        },
+        {
+          "id": 1,
+          "name": "Broccoli",
+          "user_id": 1,
+          "serving_size": 85,
+          "calories": 30,
+          "carbs": 6,
+          "proteins": 2,
+          "fats": 0
+        }
+      ]
+    }
+    ```
+
+* Error response: Couldn't find a Meal with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Meal couldn't be found"
+    }
+    ```
+
+### Create a Meal
+
+Creates and returns a new meal.
+
+* Require Authentication: true
+* Request
+  * Method: POST
+  * URL: /api/meals
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "name": "Chicken and Rice",
+      "description": "Chicken, broccoli, and rice.",
+      "image_url": "image url",
+    }
+    ```
+
+* Successful Response
+  * Status Code: 201
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "user_id": 1,
+      "name": "Chicken and Rice",
+      "description": "Chicken, broccoli, and rice.",
+      "image_url": "image url",
+      "foods": []
+    }
+    ```
+
+* Error Response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Bad Request",
+      "errors": {
+        "name": "Name is required",
+        "image_url": "Image URL is required",
+      }
+    }
+    ```
+
+### Edit a Meal
+
+Updates and returns an existing meal.
+
+* Require Authentication: true
+* Require proper authorization: Meal must belong to the current user
+* Request
+  * Method: PUT
+  * URL: /api/meals/:mealId
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "name": "Chicken and Rice",
+      "description": "Chicken, broccoli, and rice.",
+      "image_url": "image url",
+    }
+    ```
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "id": 1,
+      "user_id": 1,
+      "name": "Chicken and Rice",
+      "description": "Chicken, broccoli, and rice.",
+      "image_url": "image url",
+      "foods": []
+    }
+    ```
+
+* Error Response: Body validation errors
+  * Status Code: 400
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Bad Request",
+      "errors": {
+        "name": "Name is required",
+        "image_url": "Image URL is required",
+      }
+    }
+    ```
+
+* Error response: Couldn't find a Meal with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Meal couldn't be found"
+    }
+    ```
+
+### Delete a Meal
+
+Deletes an existing meal.
+
+* Require Authentication: true
+* Require proper authorization: Meal must belong to the current user
+* Request
+  * Method: DELETE
+  * URL: /api/meals/:mealId
+  * Body: none
+
+* Successful Response
+  * Status Code: 200
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Successfully deleted"
+    }
+    ```
+
+* Error response: Couldn't find a Meal with the specified id
+  * Status Code: 404
+  * Headers:
+    * Content-Type: application/json
+  * Body:
+
+    ```json
+    {
+      "message": "Meal couldn't be found"
     }
     ```
