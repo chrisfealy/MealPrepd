@@ -70,6 +70,28 @@
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?logo=github&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/SQLAlchemy-white?logo=sqlalchemy&logoColor=blue)
 
+## Demo
+
+## Food
+### Create Food
+![create food](<demo/create_food.gif>)
+
+### Update Food
+![update food](<demo/update_food.gif>)
+
+### Delete Food
+![delete food](<demo/delete_food.gif>)
+
+## Meals
+### Create Meal
+![create meal](<demo/create_meal.gif>)
+
+### Update meal
+![update meal](<demo/update_meal.gif>)
+
+### Delete meal
+![delete meal](<demo/delete_meal.gif>)
+
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
