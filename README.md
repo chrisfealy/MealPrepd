@@ -70,8 +70,7 @@
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?logo=github&logoColor=white)
 ![Static Badge](https://img.shields.io/badge/SQLAlchemy-white?logo=sqlalchemy&logoColor=blue)
 
-## Demo
-
+# Demo
 ## Food
 ### Create Food
 ![create food](<demo/create_food.gif>)
