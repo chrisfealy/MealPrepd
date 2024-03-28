@@ -2,6 +2,40 @@
 
 [MealPrepd](https://mealprepd.onrender.com) is a meal planner and nutrition tracker, inspired by [MyFitnessPal](https://www.myfitnesspal.com/).
 
+- Mealprepd current offers the following features:
+  - Food
+  - Meals
+- Users can add foods to a public database and share meals with others. Meal nutrition values are calculated by summing the macronutrients of each food that make up the meal.
+- In the future, there are plans to implement a weekly meal generator. Users will be given a meal plan for each day of the week, including meals for: breakfast, lunch dinner, and optionally snacks. The total macronutrient values of ALL meals in a given day will equate to a user's particular macronutrient goals.
+
+## Installation guide
+
+### Clone the repo
+  * run `git clone https://github.com/chrisfealy/MealPrepd.git` in a desired directory
+
+### Install dependencies
+  * run `pipenv install -r requirements.txt` in the root project folder
+  * run `npm install` in `react-vite` folder
+
+### Create and ensure that the .env file has the following fields
+(You will need to create an AWS S3 Bucket)
+  * SECRET_KEY
+  * DATABASE_URL
+  * SCHEMA
+  * S3_BUCKET
+  * S3_KEY
+  * S3_SECRET
+
+### Migration
+  * run `pipenv shell flask db upgrade` in the root project folder
+
+### Optional seedings
+  * run `pipenv shell flask seed reset` in the root project folder
+
+### Start up the servers
+  * run `pipenv shell flask run` in the root project folder
+  * run `npm run dev` in `react-vite` folder
+
 ## Contact Me
 [![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/christopher-fealy/)
 ![Gmail](https://img.shields.io/badge/Gmail-D14836?logo=gmail&logoColor=white)
